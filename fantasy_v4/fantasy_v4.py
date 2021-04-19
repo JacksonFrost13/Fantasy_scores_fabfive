@@ -187,6 +187,8 @@ class mywindow(QtWidgets.QMainWindow):
         self.ui.sups_out.clearSelection()
         self.ui.cores_out.clearSelection()
         self.ui.output_table.clear()
+        self.ui.output_table.setColumnCount(0)
+        self.ui.output_table.setRowCount(0)
 
         global playing
         playing = []
