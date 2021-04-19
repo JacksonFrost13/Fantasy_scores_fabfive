@@ -6,7 +6,7 @@ pd.set_option("display.min_rows", 200)
 pd.set_option("display.max_rows", 999)
 
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name('stats-310310-dad4c31922c5.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name('your json creds file', scope)
 client = gspread.authorize(creds)
 sheet = client.open('Stats')
 sheet_instance = sheet.get_worksheet(5)
