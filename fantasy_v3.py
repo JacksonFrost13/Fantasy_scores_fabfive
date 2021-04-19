@@ -6,7 +6,7 @@ pd.set_option("display.min_rows", 200)
 pd.set_option("display.max_rows", 999)
 
 scope = ['https://spreadsheets.google.com/feeds','https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name('stats-310310-dad4c31922c5.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name('your json cred file', scope)
 client = gspread.authorize(creds)
 sheet = client.open('Stats') #EU 3-4, CN 5-6, CIS 7-8
 print('1: EU\n2: China\n3: CIS')
@@ -127,8 +127,6 @@ while True:
     for x in range(len(teams)):
         print(f"{x+1}: {teams[x]}\t")
     who = input('Кто сегодня сыграет и как?\nВведите информацию в формате Index1 X - Y Index2;...: ')
-    # if who == "all":
-    #     playing = teams
     who = who.split(';')
     for match in who:
         match = match.split(' - ')
@@ -142,9 +140,8 @@ while True:
                 playing.append(teams[int(match[i][0])-1])
 
     team_multis = {teamx[0]: teamx[1:] for teamx in teams_with_score}
-    # for f in range(len(who)):
-    #     playing.append(teams[int(who[f])-1])
     del who
+    
     number = int(input('Сколько комбинаций нужно?: '))
 
     sup_nicks = []
@@ -161,11 +158,10 @@ while True:
     check_cores = []
     check_sups = []
     exclude_cores = []
-    exclude_sups = ['tOfu']
+    exclude_sups = []
 
 
     for team in playing:
-        #match_data = teams_with_score дописать под добавление и умножение птс в словарь team
         nicks = eval(team).keys()
         for nick in nicks:
             if eval(team).get(nick)[0] == 'C':
@@ -193,42 +189,6 @@ while True:
                             if (checking_cores(core_nicks[k], core_nicks[l], core_nicks[m]) and (checking_sups(sup_nicks[i], sup_nicks[j]))): # and (core_nicks[l] or core_nicks[m]) in check_cores
                                 if (ex_sups(sup_nicks[i], sup_nicks[j]) and ex_cores(core_nicks[k], core_nicks[l], core_nicks[m])): #
                                     setup.append([score, price, sup_nicks[i] + ' (' + str(sup_pts[i]) + ')', sup_nicks[j]+ ' (' + str(sup_pts[j]) + ')', core_nicks[k] + ' (' + str(core_pts[k]) + ')', core_nicks[l] + ' (' + str(core_pts[l]) + ')', core_nicks[m] + ' (' + str(core_pts[m]) + ')'])
-
-    # sup_nicks = []
-    # sup_price = []
-    # sup_pts = []
-    # core_nicks = []
-    # core_price = []
-    # core_pts = []
-    #
-    # for team in teams:
-    #     nicks = eval(team).keys()
-    #     for nick in nicks:
-    #         if eval(team).get(nick)[0] == 'C':
-    #             core_nicks.append(nick)
-    #             core_pts.append(eval(team).get(nick)[1])
-    #             core_price.append(eval(team).get(nick)[2])
-    #         elif eval(team).get(nick)[0] == 'S':
-    #             sup_nicks.append(nick)
-    #             sup_pts.append(eval(team).get(nick)[1])
-    #             sup_price.append(eval(team).get(nick)[2])
-    #
-    # for i in range(len(sup_nicks)):
-    #     for j in range(i+1, len(sup_nicks)):
-    #         for k in range(len(core_nicks)):
-    #             for l in range(k+1, len(core_nicks)):
-    #                 for m in range(l+1, len(core_nicks)):
-    #                     score = sup_pts[i] + sup_pts[j] + core_pts[k] + core_pts[l] + core_pts[m]
-    #                     price = sup_price[i] + sup_price[j] + core_price[k] + core_price[l] + core_price[m]
-    #                     if price <= 50:
-    #                         # setup_all.append([score, price, sup_nicks[i] + ' (' + str(sup_pts[i]) + ')',
-    #                         #                sup_nicks[j] + ' (' + str(sup_pts[j]) + ')',
-    #                         #                core_nicks[k] + ' (' + str(core_pts[k]) + ')',
-    #                         #                core_nicks[l] + ' (' + str(core_pts[l]) + ')',
-    #                         #                core_nicks[m] + ' (' + str(core_pts[m]) + ')'])
-    #                         # if (checking_cores(core_nicks[k], core_nicks[l], core_nicks[m]) and (checking_sups(sup_nicks[i], sup_nicks[j]))): # and (core_nicks[l] or core_nicks[m]) in check_cores
-    #                         #     if (ex_sups(sup_nicks[i], sup_nicks[j]) and ex_cores(core_nicks[k], core_nicks[l], core_nicks[m])): #
-    #                                 setup_all1.append([score, price, sup_nicks[i] + ' (' + str(sup_pts[i]) + ')', sup_nicks[j]+ ' (' + str(sup_pts[j]) + ')', core_nicks[k] + ' (' + str(core_pts[k]) + ')', core_nicks[l] + ' (' + str(core_pts[l]) + ')', core_nicks[m] + ' (' + str(core_pts[m]) + ')'])
 
     setup_all1.sort(key=lambda i: i[0], reverse=True)
     setup.sort(key=lambda i: i[0], reverse=True)
