@@ -184,14 +184,7 @@ while True:
                         score = sup_pts[i] + sup_pts[j] + core_pts[k] + core_pts[l] + core_pts[m]
                         price = sup_price[i] + sup_price[j] + core_price[k] + core_price[l] + core_price[m]
                         if price <= 50:
-                            # setup_all.append([score, price, sup_nicks[i] + ' (' + str(sup_pts[i]) + ')',
-                            #                sup_nicks[j] + ' (' + str(sup_pts[j]) + ')',
-                            #                core_nicks[k] + ' (' + str(core_pts[k]) + ')',
-                            #                core_nicks[l] + ' (' + str(core_pts[l]) + ')',
-                            #                core_nicks[m] + ' (' + str(core_pts[m]) + ')'])
-                            # if (checking_cores(core_nicks[k], core_nicks[l], core_nicks[m]) and (checking_sups(sup_nicks[i], sup_nicks[j]))): # and (core_nicks[l] or core_nicks[m]) in check_cores
-                            #     if (ex_sups(sup_nicks[i], sup_nicks[j]) and ex_cores(core_nicks[k], core_nicks[l], core_nicks[m])): #
-                                    setup_all1.append([score, price, sup_nicks[i] + ' (' + str(sup_pts[i]) + ')', sup_nicks[j]+ ' (' + str(sup_pts[j]) + ')', core_nicks[k] + ' (' + str(core_pts[k]) + ')', core_nicks[l] + ' (' + str(core_pts[l]) + ')', core_nicks[m] + ' (' + str(core_pts[m]) + ')'])
+                            setup_all1.append([score, price, sup_nicks[i] + ' (' + str(sup_pts[i]) + ')', sup_nicks[j]+ ' (' + str(sup_pts[j]) + ')', core_nicks[k] + ' (' + str(core_pts[k]) + ')', core_nicks[l] + ' (' + str(core_pts[l]) + ')', core_nicks[m] + ' (' + str(core_pts[m]) + ')'])
 
     setup_all1.sort(key=lambda i: i[0], reverse=True)
     setup.sort(key=lambda i: i[0], reverse=True)
